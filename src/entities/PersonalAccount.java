@@ -1,37 +1,39 @@
 package entities;
 
-public class PersonalAccount extends PrincipalAccount{
+import entities.enums.LevelAccount;
 
-	private Integer cpf;
-	private Double tax;
+public final class PersonalAccount extends PrincipalAccount{
+
+	private String cpf;
 	private Integer age;
+	private LevelAccount levelAccount;
 	
 	public PersonalAccount() {
 		super();
 	}
 
-	public PersonalAccount(String name, Integer accountNumber, Double balance, Double withdrawLimit, Integer cpf,
-			Double tax, Integer age) {
+	public PersonalAccount(String name, Integer accountNumber, Double balance, Double withdrawLimit, String cpf,
+			Integer age, LevelAccount levelAccount) {
 		super(name, accountNumber, balance, withdrawLimit);
 		this.cpf = cpf;
-		this.tax = tax;
 		this.age = age;
+		this.levelAccount = levelAccount;
+	}
+	
+	public PersonalAccount(String name, Integer accountNumber, Double withdrawLimit, String cpf, 
+			Integer age, LevelAccount levelAccount) {
+		super(name, accountNumber, withdrawLimit);
+		this.cpf = cpf;
+		this.age = age;
+		this.levelAccount = levelAccount;
 	}
 
-	public Integer getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}
-
-	public Double getTax() {
-		return tax;
-	}
-
-	public void setTax(Double tax) {
-		this.tax = tax;
 	}
 
 	public Integer getAge() {
@@ -42,14 +44,22 @@ public class PersonalAccount extends PrincipalAccount{
 		this.age = age;
 	}
 	
+	public LevelAccount getLevelAccount() {
+		return levelAccount;
+	}
+
+	public void setLevelAccount(LevelAccount levelAccount) {
+		this.levelAccount = levelAccount;
+	}
+
 	@Override
-	public void withdraw(Double amount) {
-		// codigo
+	public final void withdraw(Double amount) {
+		balance -= amount * 0.97;
 	}
 	
 	@Override
-	public void deposit(Double amount) {
-		// codigo
+	public final void deposit(Double amount) {
+		balance += amount;
 	}
 	
 }

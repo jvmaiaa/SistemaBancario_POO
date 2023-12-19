@@ -4,7 +4,7 @@ public class PrincipalAccount {
 	
 	private String name;
 	private Integer accountNumber;
-	private Double balance;
+	protected Double balance;
 	private Double withdrawLimit;
 	
 	public PrincipalAccount(){

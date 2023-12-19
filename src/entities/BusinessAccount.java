@@ -1,44 +1,52 @@
 package entities;
 
-public class BusinessAccount extends PrincipalAccount {
+import java.util.Date;
+
+public final class BusinessAccount extends PrincipalAccount {
 	
-	private Integer cnpj;
-	private Double enterpriseTax;
+	private String cnpj;
+	private Date openningYear;
 	
 	public BusinessAccount() {
 		super();
 	}
-
-	public BusinessAccount(String name, Integer accountNumber, Double balance, Double withdrawLimit, Integer cnpj,
-			Double enterpriseTax) {
+	
+	public BusinessAccount(String name, Integer accountNumber, Double balance, Double withdrawLimit, String cnpj,
+			Date openningYear) {
 		super(name, accountNumber, balance, withdrawLimit);
 		this.cnpj = cnpj;
-		this.enterpriseTax = enterpriseTax;
+		this.openningYear = openningYear;
+	}
+	
+	public BusinessAccount(String name, Integer accountNumber, Double withdrawLimit, String cnpj, Date openningYear) {
+		super(name, accountNumber, withdrawLimit);
+		this.cnpj = cnpj;
+		this.openningYear = openningYear;
 	}
 
-	public Integer getCnpj() {
+	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(Integer cnpj) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 
-	public Double getEnterpriseTax() {
-		return enterpriseTax;
+	public Date getOpenningYear() {
+		return openningYear;
 	}
 
-	public void setEnterpriseTax(Double enterpriseTax) {
-		this.enterpriseTax = enterpriseTax;
+	public void setOpenningYear(Date openningYear) {
+		this.openningYear = openningYear;
 	}
-	
+
 	@Override
-	public void withdraw(Double amount) {
-		// codigo
+	public final void withdraw(Double amount) {
+		balance -= amount * 0.95;  
 	}
 	
 	@Override 
-	public void deposit(Double amount) {
-		// codigo
+	public final void deposit(Double amount) {
+		balance += amount;
 	}
 }
