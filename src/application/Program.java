@@ -42,14 +42,15 @@ public class Program {
 		double withdrawLimit = scan.nextDouble();
 		System.out.print("What type of your account (Personal Account - 1 / Business Account - 2): ");
 		char resp = scan.next().charAt(0);
+		scan.nextLine();
 		PrincipalAccount pacc = null;
 		if (resp == '1') {
 			System.out.print("Enter your CPF: ");
 			String cpf = scan.nextLine();
-			System.out.print("Enter your account level (BASIC / INTERMEDIARY / PREMIUM ): ");
-			LevelAccount level = LevelAccount.valueOf(scan.next());
 			System.out.print("Enter your age: ");
 			int age = scan.nextInt();
+			System.out.print("Enter your account level (BASIC / INTERMEDIARY / PREMIUM ): ");
+			LevelAccount level = LevelAccount.valueOf(scan.next());
 			 pacc = new PersonalAccount(name, accountNumber, withdrawLimit, cpf, age, level);
 		}
 		else if (resp == '2'){
@@ -60,12 +61,12 @@ public class Program {
 			pacc = new BusinessAccount(name, accountNumber, withdrawLimit, cnpj, oppeningYear);
 		}
 		else {
-			System.out.print("Invalid account type! ");
+			System.out.print("");
 		}
 		pacc.deposit(deposit);
 		
 		System.out.println();
-		System.out.println("Account Data:");
+		System.out.println("Account Data:\n");
 		System.out.print(pacc);
 		
 		scan.close();

@@ -63,7 +63,7 @@ public class PrincipalAccount {
 	
 	public String toString() {
 		return "Name: " + name + "\nAccountNumber: " + accountNumber
-				+ "\nBalance: $" + String.format("%.2f", balance);
+				+ "\nBalance: $" + String.format("%.2f", balance) + "\n";
 	}
 	
 }

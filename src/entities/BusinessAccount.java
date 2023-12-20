@@ -1,8 +1,10 @@
 package entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public final class BusinessAccount extends PrincipalAccount {
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	private String cnpj;
 	private Date openningYear;
@@ -48,5 +50,10 @@ public final class BusinessAccount extends PrincipalAccount {
 	@Override 
 	public final void deposit(Double amount) {
 		balance += amount;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + "CNPJ: " + cnpj + "\nOpening Year: " + sdf.format(openningYear);
 	}
 }

@@ -62,4 +62,9 @@ public final class PersonalAccount extends PrincipalAccount{
 		balance += amount;
 	}
 	
+	@Override
+	public String toString() {
+		return super.toString() + "CPF: " + cpf + "\nAge: " + age + "\nLevel: " + levelAccount;
+	}
+	
 }
