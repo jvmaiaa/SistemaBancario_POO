@@ -4,7 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public final class BusinessAccount extends PrincipalAccount {
-	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	// SimpleDateFormat is static, so it won't be instantiated multiple times
+	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	private String cnpj;
 	private Date openningYear;
@@ -16,12 +17,18 @@ public final class BusinessAccount extends PrincipalAccount {
 	public BusinessAccount(String name, Integer accountNumber, Double balance, Double withdrawLimit, String cnpj,
 			Date openningYear) {
 		super(name, accountNumber, balance, withdrawLimit);
+		if (withdrawLimit <= 5.00) {
+			throw new IllegalArgumentException("The value needs be greather than $5.00");
+		}
 		this.cnpj = cnpj;
 		this.openningYear = openningYear;
 	}
 	
 	public BusinessAccount(String name, Integer accountNumber, Double withdrawLimit, String cnpj, Date openningYear) {
 		super(name, accountNumber, withdrawLimit);
+		if (withdrawLimit <= 5.00) {
+			throw new IllegalArgumentException("The value needs be greather than $5.00");
+		}
 		this.cnpj = cnpj;
 		this.openningYear = openningYear;
 	}
@@ -44,11 +51,13 @@ public final class BusinessAccount extends PrincipalAccount {
 
 	@Override
 	public final void withdraw(Double amount) {
+		super.withdraw(amount);
 		balance -= amount * 0.95;  
 	}
 	
 	@Override 
 	public final void deposit(Double amount) {
+		super.deposit(amount);
 		balance += amount;
 	}
 	
