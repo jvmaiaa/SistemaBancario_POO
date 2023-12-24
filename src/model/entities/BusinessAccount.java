@@ -1,4 +1,4 @@
-package entities;
+package model.entities;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,17 +14,8 @@ public final class BusinessAccount extends PrincipalAccount {
 		super();
 	}
 	
-	public BusinessAccount(String name, Integer accountNumber, Double balance, Double withdrawLimit, String cnpj,
+	public BusinessAccount(String name, Integer accountNumber, Double withdrawLimit, String cnpj,
 			Date openningYear) {
-		super(name, accountNumber, balance, withdrawLimit);
-		if (withdrawLimit <= 5.00) {
-			throw new IllegalArgumentException("The value needs be greather than $5.00");
-		}
-		this.cnpj = cnpj;
-		this.openningYear = openningYear;
-	}
-	
-	public BusinessAccount(String name, Integer accountNumber, Double withdrawLimit, String cnpj, Date openningYear) {
 		super(name, accountNumber, withdrawLimit);
 		if (withdrawLimit <= 5.00) {
 			throw new IllegalArgumentException("The value needs be greather than $5.00");
@@ -58,7 +49,6 @@ public final class BusinessAccount extends PrincipalAccount {
 	@Override 
 	public final void deposit(Double amount) {
 		super.deposit(amount);
-		balance += amount;
 	}
 	
 	@Override

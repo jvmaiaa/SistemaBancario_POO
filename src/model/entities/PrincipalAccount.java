@@ -1,4 +1,4 @@
-package entities;
+package model.entities;
 
 public class PrincipalAccount {
 	
@@ -10,25 +10,14 @@ public class PrincipalAccount {
 	public PrincipalAccount(){
 	}
 
-	public PrincipalAccount(String name, Integer accountNumber,Double balance, Double withdrawLimit) {
-		if (withdrawLimit <= 5.00) {
-			throw new IllegalArgumentException("The value needs be greather than $5.00");
-		}
-		this.name = name;
-		this.accountNumber = accountNumber;
-		this.balance = balance;
-		this.withdrawLimit = withdrawLimit;
-	}
-	
 	public PrincipalAccount(String name, Integer accountNumber, Double withdrawLimit) {
 		if (withdrawLimit <= 5.00) {
 			throw new IllegalArgumentException("The value needs be greather than $5.00");
 		}
 		this.name = name;
 		this.accountNumber = accountNumber;
-		this.withdrawLimit = withdrawLimit;
-		// this.balance is optional, because the attribute when not mentioned, starts with 0
 		this.balance = 0.0;
+		this.withdrawLimit = withdrawLimit;
 	}
 
 	public String getName() {

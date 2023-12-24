@@ -7,10 +7,10 @@ import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
-import entities.BusinessAccount;
-import entities.PersonalAccount;
-import entities.PrincipalAccount;
-import entities.enums.LevelAccount;
+import model.entities.BusinessAccount;
+import model.entities.PersonalAccount;
+import model.entities.PrincipalAccount;
+import model.entities.enums.LevelAccount;
 
 public class Program {
 
@@ -33,6 +33,7 @@ public class Program {
 		double withdrawLimit = scan.nextDouble();
 		pacc.setWithdrawLimit(withdrawLimit);
 		*/
+		
 		try { 
 			System.out.print("Enter your name: ");
 			String name = scan.nextLine();

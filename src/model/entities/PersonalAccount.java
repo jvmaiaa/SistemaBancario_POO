@@ -1,6 +1,6 @@
-package entities;
+package model.entities;
 
-import entities.enums.LevelAccount;
+import model.entities.enums.LevelAccount;
 
 public final class PersonalAccount extends PrincipalAccount{
 
@@ -12,18 +12,7 @@ public final class PersonalAccount extends PrincipalAccount{
 		super();
 	}
 	
-	public PersonalAccount(String name, Integer accountNumber, Double balance, Double withdrawLimit, String cpf,
-			Integer age, LevelAccount levelAccount) {
-		super(name, accountNumber, balance, withdrawLimit);
-		if (withdrawLimit <= 5.00) {
-			throw new IllegalArgumentException("The value needs be greather than $5.00");
-		}
-		this.cpf = cpf;
-		this.age = age;
-		this.levelAccount = levelAccount;
-	}
-
-	public PersonalAccount(String name, Integer accountNumber, Double withdrawLimit, String cpf, 
+	public PersonalAccount(String name, Integer accountNumber, Double withdrawLimit, String cpf,
 			Integer age, LevelAccount levelAccount) {
 		super(name, accountNumber, withdrawLimit);
 		if (withdrawLimit <= 5.00) {
@@ -67,7 +56,6 @@ public final class PersonalAccount extends PrincipalAccount{
 	@Override
 	public final void deposit(Double amount) {
 		super.deposit(amount);
-		balance += amount;
 	}
 	
 	@Override
