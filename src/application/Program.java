@@ -2,8 +2,10 @@ package application;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -35,18 +37,26 @@ public class Program {
 		*/
 		
 		try { 
-			System.out.print("Enter your name: ");
-			String name = scan.nextLine();
-			System.out.print("Enter your account number: ");
-			int accountNumber = scan.nextInt();
-			System.out.print("Enter the amount to deposit into your account: ");
-			double deposit = scan.nextDouble();
-			System.out.print("Enter the limit to your withdraw (It needs to be greather than $5.00): ");
-			double withdrawLimit = scan.nextDouble();
-			System.out.print("What type of your account (Personal Account - 1 / Business Account - 2): ");
-			char resp = scan.next().charAt(0);
-			scan.nextLine();
-			PrincipalAccount pacc = null;
+			List<PrincipalAccount> contas = new ArrayList<>();
+			
+			System.out.print("Enter how many accounts you want to add:");
+			int quantityOfAccounts = scan.nextInt();
+			for (int i = 0; i < quantityOfAccounts; i++) {
+				scan.nextLine();
+				System.out.println("Account Data #" + (i+1) + "\n");
+				System.out.print("Enter your name: ");
+				String name = scan.nextLine();
+				System.out.print("Enter your account number: ");
+				int accountNumber = scan.nextInt();
+				System.out.print("Enter the amount to deposit into your account: ");
+				double deposit = scan.nextDouble();
+				System.out.print("Enter the limit to your withdraw (It needs to be greather than $5.00): ");
+				double withdrawLimit = scan.nextDouble();
+				System.out.print("What type of your account (Personal Account - 1 / Business Account - 2): ");
+				char resp = scan.next().charAt(0);
+				scan.nextLine();
+				PrincipalAccount pacc = null;
+				
 			if (resp == '1') {
 				System.out.print("Enter your CPF: ");
 				String cpf = scan.nextLine();
@@ -66,11 +76,19 @@ public class Program {
 			else {
 				System.out.print("Invalid Option! ");
 			}
-			pacc.deposit(deposit);
-			
+			if (pacc != null) {
+				pacc.deposit(deposit);
+				contas.add(pacc);
+			}
+			deposit = 0.0;
 			System.out.println();
-			System.out.println("Account Data:\n");
-			System.out.print(pacc);
+			}
+			int j = 0;
+			for (PrincipalAccount acc : contas) {
+				System.out.println("Account Data #" + (j+1) + "\n");
+				System.out.println(acc);
+				j++;
+			}
 		}
 		catch (ParseException e) {
 			System.out.println("Invalid date format! Enter a date in the format (dd/MM/yyyy).");
