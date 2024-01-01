@@ -80,7 +80,6 @@ public class Program {
 				pacc.deposit(deposit);
 				contas.add(pacc);
 			}
-			deposit = 0.0;
 			System.out.println();
 			}
 			int j = 0;
