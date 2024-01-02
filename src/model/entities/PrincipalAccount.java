@@ -67,6 +67,14 @@ public class PrincipalAccount {
 		}
 		balance += amount;
 	}
+
+	public void transfer(PrincipalAccount sourceAccount, PrincipalAccount destinationAccount, Double amount) {
+		if (amount > balance) {
+			throw new IllegalArgumentException("The transfer value must be less than or equal to the account value!");
+		}
+		sourceAccount.balance -= amount;
+		destinationAccount.balance += amount;
+	}
 	
 	@Override
 	public String toString() {

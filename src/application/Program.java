@@ -88,6 +88,8 @@ public class Program {
 				System.out.println(acc);
 				j++;
 			}
+			System.out.println("Enter a account number that will make the transfer:");
+			int number = scan.nextInt();
 		}
 		catch (ParseException e) {
 			System.out.println("Invalid date format! Enter a date in the format (dd/MM/yyyy).");
